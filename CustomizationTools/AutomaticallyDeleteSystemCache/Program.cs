@@ -6,7 +6,8 @@ namespace AutomaticallyDeleteSystemCache
     {
         static void Main(string[] args)
         {
-            string tempPath = @"C:\Users\kennyguo\AppData\Local\Temp";
+            string userName = Environment.UserName;
+            string tempPath = $@"C:\Users\{userName}\AppData\Local\Temp";
             string logDirectory = @"D:\TempLog";
             string logFileName = $"{DateTime.Now:yyyyMMdd}_DeleteSysLogs.txt";
             string logFilePath = Path.Combine(logDirectory, logFileName);
