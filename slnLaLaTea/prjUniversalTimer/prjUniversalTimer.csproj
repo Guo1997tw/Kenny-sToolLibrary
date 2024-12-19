@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Background_250x350.jpeg" />
     <None Remove="Images\Play.svg" />
     <None Remove="Images\PowerOff.svg" />
     <None Remove="Images\Rotate.svg" />
@@ -17,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\Background_250x350.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Play.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
