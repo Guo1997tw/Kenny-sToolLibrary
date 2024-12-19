@@ -9,7 +9,8 @@
         Topmost="True"
         WindowStyle="None"
         AllowsTransparency="True"
-        MouseDown="WindowMovement">
+        MouseDown="WindowMovement"
+        Icon="/Images/Xiaohei.ico">
     <!-- 背景圖片設置 -->
     <Window.Background>
         <ImageBrush ImageSource="/Images/Background_250x350.jpeg" Stretch="UniformToFill" Opacity="0.85"/>

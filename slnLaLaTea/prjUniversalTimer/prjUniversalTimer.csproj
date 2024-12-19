@@ -14,6 +14,7 @@
     <None Remove="Images\PowerOff.svg" />
     <None Remove="Images\Rotate.svg" />
     <None Remove="Images\Stop.svg" />
+    <None Remove="Images\Xiaohei.ico" />
     <None Remove="Musics\Audiobook.mp3" />
   </ItemGroup>
 
@@ -40,6 +41,10 @@
 
   <ItemGroup>
     <PackageReference Include="SharpVectors" Version="1.8.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Xiaohei.ico" />
   </ItemGroup>
 
 </Project>
