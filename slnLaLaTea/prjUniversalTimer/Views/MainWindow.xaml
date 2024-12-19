@@ -5,98 +5,100 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="Timer" Height="250" Width="350"
+        Title="Timer" Height="300" Width="400"
         Topmost="True"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="#AAFFFFFF"
         MouseDown="WindowMovement">
-    <Viewbox Stretch="Uniform">
-        <Grid Margin="10">
-            <!-- 定義行與列 -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <!-- 按鈕區 -->
-                <RowDefinition Height="*"/>
-                <!-- 時間顯示區 -->
-                <RowDefinition Height="Auto"/>
-                <!-- 滑桿區 -->
-            </Grid.RowDefinitions>
+    <!-- 背景圖片設置 -->
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/Background_250x350.jpeg" Stretch="UniformToFill" Opacity="0.85"/>
+    </Window.Background>
 
-            <!-- 1. 按鈕區塊 -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
-                <!-- 開始按鈕 -->
-                <Button Margin="5" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="StartTimer">
-                    <svg:SvgViewbox Source="Images/Play.svg" Stretch="Uniform"/>
-                </Button>
-                <!-- 暫停按鈕 -->
-                <Button Margin="5" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="PauseTimer">
-                    <svg:SvgViewbox Source="Images/Stop.svg" Stretch="Uniform"/>
-                </Button>
-                <!-- 重置按鈕 -->
-                <Button Margin="5" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="ResetTimer">
-                    <svg:SvgViewbox Source="Images/Rotate.svg" Stretch="Uniform"/>
-                </Button>
-                <!-- 關閉程式按鈕 -->
-                <Button Margin="5" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="Close">
-                    <svg:SvgViewbox Source="Images/PowerOff.svg" Stretch="Uniform"/>
-                </Button>
-            </StackPanel>
+    <Grid Margin="10">
+        <!-- 定義行與列 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- 按鈕區 -->
+            <RowDefinition Height="*"/>
+            <!-- 時間顯示區 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 滑桿區 -->
+        </Grid.RowDefinitions>
 
-            <!-- 2. 時間顯示區塊 -->
-            <TextBlock x:Name="TimeDisplay"
-                       Grid.Row="1" 
-                       Text="00 : 00 : 00" 
-                       FontSize="48" 
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"
-                       Foreground="#333333"/>
+        <!-- 1. 按鈕區塊 -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0">
+            <!-- 開始按鈕 -->
+            <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="StartTimer">
+                <svg:SvgViewbox Source="Images/Play.svg" Stretch="Uniform"/>
+            </Button>
+            <!-- 暫停按鈕 -->
+            <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="PauseTimer">
+                <svg:SvgViewbox Source="Images/Stop.svg" Stretch="Uniform"/>
+            </Button>
+            <!-- 重置按鈕 -->
+            <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="ResetTimer">
+                <svg:SvgViewbox Source="Images/Rotate.svg" Stretch="Uniform"/>
+            </Button>
+            <!-- 關閉程式按鈕 -->
+            <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="Close">
+                <svg:SvgViewbox Source="Images/PowerOff.svg" Stretch="Uniform"/>
+            </Button>
+        </StackPanel>
 
-            <!-- 3. 滑桿區塊 -->
-            <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,20,0,0">
-                <!-- 小時滑桿 -->
-                <GroupBox Header="設定小時 (H)" Margin="0,0,0,10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="50"/>
-                        </Grid.ColumnDefinitions>
-                        <Slider x:Name="HourSlider" Minimum="0" Maximum="24" TickFrequency="1" IsSnapToTickEnabled="True"
-                                Margin="10,0" Grid.Column="0" ValueChanged="GetSliderValue"/>
-                        <TextBlock x:Name="HourValue" Text="0" FontSize="16" VerticalAlignment="Center"
-                                   HorizontalAlignment="Center" Grid.Column="1"/>
-                    </Grid>
-                </GroupBox>
+        <!-- 2. 時間顯示區塊 -->
+        <TextBlock x:Name="TimeDisplay"
+                   Grid.Row="1"
+                   Text="00 : 00 : 00"
+                   FontSize="48"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="White"/>
 
-                <!-- 分鐘滑桿 -->
-                <GroupBox Header="設定分鐘 (M)" Margin="0,0,0,10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="50"/>
-                        </Grid.ColumnDefinitions>
-                        <Slider x:Name="MinuteSlider" Minimum="0" Maximum="59" TickFrequency="1" IsSnapToTickEnabled="True"
-                                Margin="10,0" Grid.Column="0" ValueChanged="GetSliderValue"/>
-                        <TextBlock x:Name="MinuteValue" Text="0" FontSize="16" VerticalAlignment="Center"
-                                   HorizontalAlignment="Center" Grid.Column="1"/>
-                    </Grid>
-                </GroupBox>
+        <!-- 3. 滑桿區塊 -->
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,20,0,0">
+            <!-- 小時滑桿 -->
+            <GroupBox Header="設定小時 (H)" Margin="0,0,0,15" FontSize="14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider x:Name="HourSlider" Minimum="0" Maximum="24" TickFrequency="1" IsSnapToTickEnabled="True"
+                            Margin="20,0" Grid.Column="0" ValueChanged="GetSliderValue"/>
+                    <TextBlock x:Name="HourValue" Text="0" FontSize="16" VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Grid.Column="1"/>
+                </Grid>
+            </GroupBox>
 
-                <!-- 秒數滑桿 -->
-                <GroupBox Header="設定秒數 (S)" Margin="0,0,0,10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="50"/>
-                        </Grid.ColumnDefinitions>
-                        <Slider x:Name="SecondSlider" Minimum="0" Maximum="59" TickFrequency="1" IsSnapToTickEnabled="True"
-                                Margin="10,0" Grid.Column="0" ValueChanged="GetSliderValue"/>
-                        <TextBlock x:Name="SecondValue" Text="0" FontSize="16" VerticalAlignment="Center"
-                                   HorizontalAlignment="Center" Grid.Column="1"/>
-                    </Grid>
-                </GroupBox>
-            </StackPanel>
-        </Grid>
-    </Viewbox>
+            <!-- 分鐘滑桿 -->
+            <GroupBox Header="設定分鐘 (M)" Margin="0,0,0,15" FontSize="14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider x:Name="MinuteSlider" Minimum="0" Maximum="59" TickFrequency="1" IsSnapToTickEnabled="True"
+                            Margin="20,0" Grid.Column="0" ValueChanged="GetSliderValue"/>
+                    <TextBlock x:Name="MinuteValue" Text="0" FontSize="16" VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Grid.Column="1"/>
+                </Grid>
+            </GroupBox>
+
+            <!-- 秒數滑桿 -->
+            <GroupBox Header="設定秒數 (S)" Margin="0,0,0,15" FontSize="14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider x:Name="SecondSlider" Minimum="0" Maximum="59" TickFrequency="1" IsSnapToTickEnabled="True"
+                            Margin="20,0" Grid.Column="0" ValueChanged="GetSliderValue"/>
+                    <TextBlock x:Name="SecondValue" Text="0" FontSize="16" VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Grid.Column="1"/>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
 </Window>
