@@ -13,6 +13,7 @@
     <None Remove="Images\PowerOff.svg" />
     <None Remove="Images\Rotate.svg" />
     <None Remove="Images\Stop.svg" />
+    <None Remove="Musics\Audiobook.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Stop.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Musics\Audiobook.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

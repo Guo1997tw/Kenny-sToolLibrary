@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -65,7 +66,7 @@ namespace prjUniversalTimer
         /// <summary>
         /// 每秒觸發，倒數計時
         /// </summary>
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object? sender, EventArgs? e)
         {
             if (totalSeconds > 0)
             {
@@ -84,7 +85,44 @@ namespace prjUniversalTimer
 
                 TimeDisplay.Text = $"{lastHour:00} : {lastMinute:00} : {lastSecond:00}";
 
-                MessageBox.Show("時間到!", "通知", MessageBoxButton.OK, MessageBoxImage.Information);
+                PlayNotificationSound();
+            }
+        }
+
+        /// <summary>
+        /// 播放音檔
+        /// </summary>
+        private void PlayNotificationSound()
+        {
+            try
+            {
+                // 確保 MP3 文件路徑正確
+                string mp3Path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Musics", "Audiobook.mp3");
+                Debug.WriteLine($"MP3 路徑: {mp3Path}");
+
+                if (!System.IO.File.Exists(mp3Path))
+                {
+                    MessageBox.Show("MP3 文件不存在，請檢查路徑！", "錯誤", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // 建立 MediaPlayer 實例
+                var player = new System.Windows.Media.MediaPlayer();
+
+                // 設置播放完成後釋放資源
+                player.MediaEnded += (s, e) =>
+                {
+                    player.Close();
+                    // Debug.WriteLine("MediaPlayer 資源已釋放");
+                };
+
+                player.Open(new Uri(mp3Path, UriKind.Absolute));
+                player.Volume = 1.0;
+                player.Play();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"播放提示音時發生錯誤: {ex.Message}", "錯誤", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         #endregion
@@ -154,7 +192,7 @@ namespace prjUniversalTimer
         /// <summary>
         /// 滑桿數值變化事件
         /// </summary>
-        private void GetSliderValue(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void GetSliderValue(object? sender, RoutedPropertyChangedEventArgs<double>? e)
         {
             // 更新滑桿旁的數值
             HourValue.Text = ((int)HourSlider.Value).ToString();
