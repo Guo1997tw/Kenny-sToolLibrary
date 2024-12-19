@@ -20,34 +20,27 @@
         <!-- 定義行與列 -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- 按鈕區 -->
             <RowDefinition Height="*"/>
-            <!-- 時間顯示區 -->
             <RowDefinition Height="Auto"/>
-            <!-- 滑桿區 -->
         </Grid.RowDefinitions>
 
-        <!-- 1. 按鈕區塊 -->
+        <!-- 按鈕區 -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0">
-            <!-- 開始按鈕 -->
             <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="StartTimer">
                 <svg:SvgViewbox Source="Images/Play.svg" Stretch="Uniform"/>
             </Button>
-            <!-- 暫停按鈕 -->
             <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="PauseTimer">
                 <svg:SvgViewbox Source="Images/Stop.svg" Stretch="Uniform"/>
             </Button>
-            <!-- 重置按鈕 -->
             <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="ResetTimer">
                 <svg:SvgViewbox Source="Images/Rotate.svg" Stretch="Uniform"/>
             </Button>
-            <!-- 關閉程式按鈕 -->
             <Button Margin="2" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Click="Close">
                 <svg:SvgViewbox Source="Images/PowerOff.svg" Stretch="Uniform"/>
             </Button>
         </StackPanel>
 
-        <!-- 2. 時間顯示區塊 -->
+        <!-- 時間顯示區 -->
         <TextBlock x:Name="TimeDisplay"
                    Grid.Row="1"
                    Text="00 : 00 : 00"
@@ -57,9 +50,8 @@
                    VerticalAlignment="Center"
                    Foreground="White"/>
 
-        <!-- 3. 滑桿區塊 -->
+        <!-- 滑桿區 -->
         <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,20,0,0">
-            <!-- 小時滑桿 -->
             <GroupBox Header="設定小時 (H)" Margin="0,0,0,15" FontSize="14">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -73,7 +65,6 @@
                 </Grid>
             </GroupBox>
 
-            <!-- 分鐘滑桿 -->
             <GroupBox Header="設定分鐘 (M)" Margin="0,0,0,15" FontSize="14">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -87,7 +78,6 @@
                 </Grid>
             </GroupBox>
 
-            <!-- 秒數滑桿 -->
             <GroupBox Header="設定秒數 (S)" Margin="0,0,0,15" FontSize="14">
                 <Grid>
                     <Grid.ColumnDefinitions>
