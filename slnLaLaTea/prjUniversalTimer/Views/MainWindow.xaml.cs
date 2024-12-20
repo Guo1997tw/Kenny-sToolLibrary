@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpVectors.Converters;
+using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,8 +17,8 @@ namespace prjUniversalTimer
         private int lastHour;
         private int lastMinute;
         private int lastSecond;
-
         private bool isTimerRunning; // 用於控制滑桿的啟用/禁用
+        private bool isWindowLocked = false;
 
         public MainWindow()
         {
@@ -169,6 +170,33 @@ namespace prjUniversalTimer
 
             UpdateTimeDisplay();
         }
+
+        /// <summary>
+        /// 鎖定視窗
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToggleWindowLock(object sender, RoutedEventArgs e)
+        {
+            // 切換鎖定狀態
+            isWindowLocked = !isWindowLocked;
+
+            // Debug 確認鎖定狀態變化
+            Debug.WriteLine($"Window Lock State: {isWindowLocked}");
+
+            // 根據狀態切換按鈕顯示
+            if (isWindowLocked)
+            {
+                LockButton.Visibility = Visibility.Collapsed;
+                UnLockButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LockButton.Visibility = Visibility.Visible;
+                UnLockButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
         #endregion
 
         #region 滑桿同步顯示
@@ -201,6 +229,12 @@ namespace prjUniversalTimer
         #region 視窗拖曳移動
         private void WindowMovement(object sender, MouseButtonEventArgs e)
         {
+            if (isWindowLocked)
+            {
+                // 當視窗鎖定時，禁止拖動
+                return;
+            }
+
             if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();

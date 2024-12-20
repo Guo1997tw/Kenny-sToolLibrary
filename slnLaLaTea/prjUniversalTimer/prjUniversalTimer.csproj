@@ -10,16 +10,21 @@
 
   <ItemGroup>
     <None Remove="Images\Background_250x350.jpeg" />
+    <None Remove="Images\Lock.svg" />
     <None Remove="Images\Play.svg" />
     <None Remove="Images\PowerOff.svg" />
     <None Remove="Images\Rotate.svg" />
     <None Remove="Images\Stop.svg" />
+    <None Remove="Images\UnLock.svg" />
     <None Remove="Images\Xiaohei.ico" />
     <None Remove="Musics\Audiobook.mp3" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Images\Background_250x350.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Lock.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Play.svg">
@@ -32,6 +37,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Stop.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\UnLock.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Musics\Audiobook.mp3">
