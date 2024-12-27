@@ -1,8 +1,10 @@
 ﻿using SharpVectors.Converters;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -242,4 +244,26 @@ namespace prjUniversalTimer
         }
         #endregion
     }
+
+    #region 動態縮放的 ScaleConverter
+    /// <summary>
+    /// 用於根據視窗大小比例調整的轉換器
+    /// </summary>
+    public class ScaleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is double size && double.TryParse(parameter?.ToString(), out double scale))
+            {
+                return size * scale;
+            }
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
 }
